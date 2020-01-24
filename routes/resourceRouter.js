@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const taskData = require('../helpers/task-model');
+const resourceData = require('../helpers/resource-model');
 
 router.get('/', (req,res) => {
-    taskData.find()
-    .then (task => {
-        res.status(200).json(task)
+    resourceData.find()
+    .then (resource => {
+        res.status(200).json(resource)
     })
     .catch (err => {
         res.status(500).json(`Something went wrong`)
@@ -15,9 +15,9 @@ router.get('/', (req,res) => {
 router.get('/:id', (req,res) => {
     const { id } = req.params
     
-        taskData.findById(id)
-        .then (task => {
-            res.status(200).json(task)
+        resourceData.findById(id)
+        .then (resource => {
+            res.status(200).json(resource)
         })
         .catch (err => {
             res.status(500).json(`Something went wrong`)
@@ -25,11 +25,11 @@ router.get('/:id', (req,res) => {
     })
     
 router.post('/', (req,res) => {
-    const taskBody = req.body
+    const resourceBody = req.body
 
-    taskData.add(taskBody)
-    .then (task => {
-        res.status(200).json(task)
+    resourceData.add(resourceBody)
+    .then (resource => {
+        res.status(200).json(resource)
     })
     .catch (err => {
         res.status(500).json(`Something went wrong`)
